@@ -1,5 +1,6 @@
 package com.cybertek.tests.day05_xpath_css_isdisplayed;
 
+import com.cybertek.utils.RandomEmailGenerator;
 import com.cybertek.utils.WebDriverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -16,6 +17,8 @@ public class PhpTravelsRegistrationTest {
         2. Navigate to https://www.phptravels.net
         3. Click on Signup link on top
          */
+        String randomEmail = RandomEmailGenerator.emailGenerator();
+
         WebDriver driver = WebDriverFactory.getDriver("chrome");
         driver.manage().window().maximize();
 
@@ -42,7 +45,7 @@ public class PhpTravelsRegistrationTest {
 
         //<input class="form-control" type="text" placeholder="Email" name="email" value="" required="">
         WebElement email = driver.findElement(By.xpath("//input[@placeholder='Email']"));
-        email.sendKeys("Gulya@gmail.com");
+        email.sendKeys(randomEmail);
 
         //<input class="form-control" type="password" placeholder="Password" name="password" value="" required="">
         WebElement password = driver.findElement(By.xpath("//input[@placeholder='Password']"));
@@ -61,8 +64,10 @@ public class PhpTravelsRegistrationTest {
         //6. Enter same login information that you used during registration and click login:
         //<input class="form-control" type="email" placeholder="Email" required="required" name="email">
         WebElement emailLogin = driver.findElement(By.xpath("//input[@placeholder='Email']"));
-        emailLogin.sendKeys("Gulya@gmail.com");
+        emailLogin.sendKeys(randomEmail);
         WebElement passwordLogin = driver.findElement(By.xpath("//input[@placeholder='Password']"));
+
+        Thread.sleep(3000);
         passwordLogin.sendKeys("123456"+Keys.ENTER);
         Thread.sleep(2000);
 
@@ -72,7 +77,7 @@ public class PhpTravelsRegistrationTest {
         System.out.println(welcomeMsg.contains("Gulya")?"Pass: Welcome message contains Gulya": "Fail: Welcome message does not contain First Name");
 
         Thread.sleep(2000);
-        driver.quit();
+        //driver.quit();
 
 
 
