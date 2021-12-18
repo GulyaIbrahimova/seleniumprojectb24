@@ -1,0 +1,91 @@
+`
+10/28/2021
+----------
+
+Test Automation Day 4:
+    -> review/practice
+    -> getAttribute, getText
+    -> more on locators
+-----------------------------
+
+Add a package day04_locators_getattribute
+
+Add a class PercentageCalculatorTest
+
+Main method:
+    - launch browser, maximize
+    - navigate to https://www.calculator.net/
+    - Click on Percentage Calculator
+    - Verify current title is "Percentage Calculator"
+    - Enter 20% of 120000 and click enter (using Keys.ENTER)
+    - Print the result "Result: 24000"
+    - close browser
+-------------------------------------
+
+Selenium Actions after finding the WebElement:
+
+-> click() -> clicks on the element like link
+driver.findElement(By.linkText("Books")).click();
+
+-> sendKeys("value") -> enters the value into input field/box
+driver.findElement(By.name("cpar1")).sendKeys("20");
+
+-> getText() -> returns the text of the web element, that is value visible on browser and in html is it between open and close tags
+
+<h1>Percentage Calculator</h1>
+
+String txt = driver.findElement(By.tagName("h1")).getText();
+
+-> getAttribute("attr name"); -> accepts attribute name and returns the value for that attribute in the html.
+
+<input class="gLFyf gsfi" jsaction="paste:puy29d;" maxlength="2048" name="q" type="text" aria-autocomplete="both" aria-haspopup="false" autocapitalize="off" autocomplete="off" autocorrect="off" autofocus="" role="combobox" spellcheck="false" title="Search" value="" aria-label="Search" data-ved="0ahUKEwjWyeDuse7zAhUhhXIEHZRzDuEQ39UDCAY">
+
+WebElement searchField = driver.findElement(By.name("q"));
+
+
+------
+Searching in Html source code using chrome developer tools:
+
+- right click and inspect your element
+- MAC: Command +1] F
+  Windows: Control + F
+  type/paste any value > hit enter
+- it will show number of matching elements in html 
+------
+
+new Class GetAttributeDemo
+
+navigate to google home page
+
+Locate the search field and assign to WebElement variable
+WebElement searchField = driver.findElement(By.name("q"));
+
+WebElement interface.
+
+It represents a single element on the page. We can find the element using findElement method then assign it to WebElement variable.
+
+WebElement link = driver.findElement(By.linkText("Gmail"));
+link.click();
+System.out.println(link.getText());
+
+Now link is a WebElement object that is pointing to Gmail link. We can reuse this and call several methods/actions on it.
+==============================================
+
+LOCATORS IN SELENIUM:
+    8 LOCATORS:
+        name, id, className, linkText, partialLinkText, tagName
+        xpath, css
+----------------------------------------------
+
+XPATH locator in Selenium:
+    - is one of the 8 locators in Selenium
+    - we can create custom locators using attributes and values of html element
+    - it follows string syntax that we need to learn:
+    - it is useful when there is no id, name etc properties available
+
+2 TYPES OF XPATH:
+    1) Absolute Xpath:
+        /html/body/h2
+       Absolute xpath searches from root element and child elements step by step until the element we need
+    2) Relative Xpath
+`

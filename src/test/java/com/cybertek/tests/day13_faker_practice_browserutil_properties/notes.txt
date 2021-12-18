@@ -1,0 +1,20 @@
+
+12/2/21
+
+How do u get your test data?
+ - depending on the scenario I get my test data dif.ways. If it is credentials of dif. roles, I get it from the shared excel sheet, where we store all Usernames and Passwords for dif.roles in the app.
+ App -> admin, user, seller, trader, buyer...
+ personal date like names, addresses -> I use library like java faker. It helps with generating values on the fly programmatically(using code)
+
+
+ --------------------------------------
+
+ testBase class -> in many automation frameworks, you will often find a class which is a Base class/parent class for all the tests. Normally that class will have @BeforeMethod/ @AfterMethod and may be some actions that are useful for all the tests
+
+ a test class will extend the testBase class. So we only need to write @Test methods in Test classes
+
+ EX:
+
+
+
+

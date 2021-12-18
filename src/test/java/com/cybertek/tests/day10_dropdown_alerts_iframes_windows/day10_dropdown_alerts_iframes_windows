@@ -1,0 +1,34 @@
+
+
+TestNG xml => we will use @BeforeTest
+
+TestNg is popular with Selenium automaton, we use annotation like @BeforeClass,
+@BeforeMethod to set up the browser, maximize, navigate to url
+
+@BeforeClass  -> the method with this annotation runs before All tests
+@BeforeMethod -> the method with this annotation runs before EVERY test
+
+
+
+@Test -> method is an executable TestN test. We can have 1 or many @Test methods in our class
+
+1. make sure you're on the right page
+2. In Selenium whenever we navigate to a page, by using get() method or by clicking a link/button,
+we firstly verify if correct page is displayed. Normally we check the Title or
+could be custom page name added to the project.
+
+ -> We can use ASSERTIONS in testNG/JUnit to verify if Title of the page is as expected: We can compare any primitives,
+ String lists, arrays if they are equal. If actual and expected does not match test will fail
+how to search Title with inspection: head/Title
+Assert.assertEquals(driver.getTitle(), expected);
+
+
+                                                   Cookies:
+cookies => to make things faster, some of them bad for hackers
+
+How to select value from dropdown:
+ 1) locate element using locator
+ 2) create select class object and pass element
+ 3) Select a value by using on of the methods
+
+

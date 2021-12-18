@@ -1,0 +1,99 @@
+    Iframe review
+    - page in page, HTML inside another html
+
+    - How do you handle iframe
+     we need to switch to <iframe> to be able to do any action on any web element inside of it.
+     - How many ways do you know to switch:
+      3 ways:
+      1. index
+        driver.switchTo().frame(0)
+      2. id, name
+        driver.switchTo().frame("id");
+        driver.switchTo().frame("name");
+      3. web element
+        WebElement iframe = driver.findElement(By.locator);
+        driver.switchTo().frame(iframeLocator);
+
+TestBase: parent of all tests in our framework, by extending our test cases we can easily handle before and after methods
+    Actions review
+        it is used for "advanced " mouse and keyboard actions
+        How to use Actions
+        1. Create an object of Actions class
+    * POM: review
+
+    What is POM design?
+        we create Java classes for our each page of the project
+        we are storing useful WebElements(reusable), methods
+    How do we implement POM design
+        constructor: have to pass PageFactory class form selenium
+        gets 2 param: driver obj. this (pointing obj of the specific class)
+    provides us with useful methods
+    Advantages:
+        - re-usability
+        - easy to maintain
+        - easy to explain to non-technical people
+        - it handles staleElementExceptions, it checks for freshness of the elemnets
+
+***** Between POM pages you can create inheritance relationship
+If you have a page which is the default (means you see it whenever you navigate) page, parent of other POM pages
+
+*** Homework for later:
+        create POM pages for allProducts and Order page
+
+*** In class task
+        go to
+        Login: credentials: Tester, test
+        Navigate to Orders link, then navigate back to allOrders link
+        click on one checkbox for "Charles Dodgeson"
+        then click deleteButton
+        then logout from the page
+*********************************************************
+                 New topic: Explicitly wait
+Q: How do you handle synchronization in selenium:\
+What is synchronization?
+    Moving, working, operating at the same time
+    in movies
+
+    In WEb Automation: Java is fast, webpage is slower, we need to handle this synch. problem.Other wise code will break.
+
+    1. static wait: Thread.sleep from Java, also we used it in BrowserUtils.sleep method
+        -   I put 2 sec for my test, my friend clones the project, but 2 sec. not enough for him. Environmental problem. may be the internet is slower at his house
+
+    2. Dynamic Waits:
+
+        * Implicit Wait( applies to all elements of the project, you need to define 1 time and it is enough)
+
+        * Explicit Wait
+            can be used to wait under certain conditions
+           for example: vyTrack we have loader screen, need to wait loader screen.
+             - wait until element is visible
+             - wait until element is clickable
+             Doesn't depend on wait time of Implicit wait
+             Only applies 1 time in that line that is used
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

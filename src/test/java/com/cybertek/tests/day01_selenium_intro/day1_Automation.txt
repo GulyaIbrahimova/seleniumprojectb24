@@ -1,0 +1,185 @@
+`
+10/17/2021 - Sunday
+
+Automation day 1.
+
+- review and some practice with html. so that we are ready for the quiz
+- Benefits of test automation
+- We will set up maven automation project
+- introduction to Selenium webdriver
+-----------------------------------------
+
+<h1 align="center"> Welcome to Our Restaurant </h1>
+
+h1 -> is tag name
+align -> property/attribute name
+center -> property/attribute value
+Welcome to Our Restaurant -> this is the text that will be visible on browser
+==========================================
+
+Benefits of test automation.
+
+Manual testing is time consuming and needs many human resources.
+Automation testing is fast, efficient, easily repeatable, only needs automation engineers/SDETs.
+
+At the end of each Sprint or right before Production release, teams do regression testing.
+ Where all previous existing functionalities of the application plus the newly added functionalities needs to re-tested.
+When manual testers perform regression testing, they might miss certain points or bugs, because humans get tired, distracted , bored etc.
+
+When automated tests run, they can run without human interaction and repeatedly run whenever we want it, day or night. 
+it is more accurate, fast, and gives feedback or catches every minor or major defect.
+
+Companies invest on test automation so that they can save money on less manual testing, and faster regression testing, 
+overall faster feedback on the quality of the application.
+--------
+
+Can we automate everything?
+No, not everything can be or should be automated, for example, application look and feel (colors, alighments etc) cannot be automated.
+Ad-hoc testing, where you just perform random actions on the application , needs to be done manually. 
+
+Capchas that ask to select images cannot be automated. ets
+--------
+Before any functionality of the application is automated, we need to first manually test and ensure it is working as expected, 
+only after that we automate that test. if functionality is broked or has defect, we do NOT automate defects/functionality with defect
+============
+There are many test automation tools in the market. Some are free and some are licensed. Free ones are Selenium, Protractor, WAtir, etc
+Paid ones: UFT from HP, Robot from IBM, TestComplete from Smartbear etc
+Selenium by far is the most popular automation tool
+It is used for front end test automation, it cannot do back end or api test automation. 
+Selenium automates browsers, up to you, how you want to use this power.
+Selenium can work with many different programming languages, meaning , we need to tell selenium what to do using one of the programming languages.
+Java, Ruby, Python, C#, JavaScript/JS, PHP.
+Java + Selenium combination is the most popular in the world.
+
+Test automation is coding. We need to know programming language basics in order to write selenium test automation code.
+Thats why you guys learned java first then after that we are starting selenium.
+Selenium works with any popular operating system: windows, Mac, linux, unix.
+Limitation of selenium is it can only automate web application using the browser.
+It cannot automate desktop applications.
+Selenium is open source, companies do not pay anything for this tool, they just pay for the SDET/QA Automation engineer like you guys.
+-------
+When we say selenium, it is a combination of several tools in a suite.
+Selenium IDE -> it is firefox plugin, that works as record and playback format. 
+Not used anymore, do not mention anywhere, especially in your resume or in interview.
+Selenium RC (Remote control) , it is merged to Webdriver now.
+***Selenium WebDriver -> this is what we will be using and learning, and needed at work. 
+Selenium Grid -> is used to run tests remotely in servers and in paralell format.
+If application under test (AUT) is developed using C# , can we still use java for test automation?
+Yes, we can, automation language and application development languages does nto have to match.
+================
+How does selenium webdriver work?
+There are 3 main parts of selenium automation.
+1) Our automation code
+2) Browser driver that takes our automation code and sends to browser
+3) Browser(Chrome, Firefox) it takes requests from the driver and performs actions.
+================
+Set up selenium project:
+Create new maven project in intellij
+We need to find pom.xml file and add our dependencies.
+Dependencies can be looked up from mvnrepository.com
+In mvnrepository , we look for libraries that we want to use in our automation project:
+Java library -> it is a combination of java classes, that can be used in other projects. Java library normally is in JAR format
+jar -> java archive. 
+For selenium webdriver:
+<dependency>
+   <groupId>org.seleniumhq.selenium</groupId>
+   <artifactId>selenium-java</artifactId>
+   <version>3.141.59</version>
+</dependency>
+For browser drivers:
+<dependency>
+   <groupId>io.github.bonigarcia</groupId>
+   <artifactId>webdrivermanager</artifactId>
+   <version>5.0.3</version>
+</dependency>
+======================================
+Maven is build automation tool.
+It hepls us with multiple things:
+1) Manage project dependencies.
+2) Building the project
+3) Execution of automation tests
+->maven project is different than java project
+-> maven is BUILD AUTOMATION TOOL:
+-creates folder structure
+-compiles the classes
+-helps create jar/war files to be deployed
+-it automatically runs automated tests
+-helps manage project dependencies in pom.xml file
+
+XML -> Extensible Markup Language, similar to HTML, it uses tags. open + close.
+All tags in xml are paired an need to be closed.
+pom.xml file is used to manage , add, remove dependencies for the project.
+FOLDER STRUCTURE:
+-src
+-main
+-java
+-test
+-java
+main package/folder is used mostly by developers, so we can just delete it.
+src/test package/folder is used for automated tests.
+-----------
+//1) set up the browser driver
+WebDriverManager.chromedriver().setup();
+//Open browser
+WebDriver driver = new ChromeDriver();
+//navigate to tesla homepage
+driver.get("https://www.tesla.com");
+WebDriver methods:
+get(String url) -> it navigates to the given url. 
+driver.get("https://www.tesla.com"); we need to add https:// part.
+----------
+-------
+How to close all chrome browsers:
+In Mac:
+- Command + Space 
+- type terminal  then enter
+- in terminal type killall "Google Chrome" then enter
+In Windows:
+  -Goto left bottom corner and click on windows icon:
+  -type powershell then select first option then open
+  -type killall "Google Chrome"
+  -click enter
+-----------------------------
+Navigation methods:
+- get..
+- navigate().back(); -> it is similar to clicking on back on the browser
+driver.navigate().back();
+- navigate().forward();
+-> it is similar to clicking forward on the browser
+driver.navigate().forward();
+- navigate().refresh() -> refreshes the page
+Similar to clicking on refresh icon on the browser
+- navigate().to() -> it accepts url, and navigates to that url
+driver.navigate().to("https://www.etsy.com");
+ Thread.sleep(2000); it is a java method, that makes code wait/sleep for given time amount. it accepts milliseconds.
+<title>Electric Cars, Solar &amp; Clean Energy | Tesla</title>
+- getTitle() method, reads the title of the current page and returns it.
+ex: System.out.println("current title: " + driver.getTitle());
+closing the browser:
+- 2 ways to close the browser:
+close() method
+quit() method
+driver.quit();
+driver.navigate().to() vs driver.get()
+driver.get() waits for the page to finish loading before going to next step
+driver.navigate().to() -> does not wait for the page to finish loading before going to next step
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+`

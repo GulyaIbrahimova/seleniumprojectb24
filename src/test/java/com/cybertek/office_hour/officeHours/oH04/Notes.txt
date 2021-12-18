@@ -1,0 +1,20 @@
+Testing Framework
+
+    Q: What are we using config.properties for?
+
+        - configuration.properties: Test Data (changing the course of your tests data, environment and browser)
+        it is in key and value format(Map-Collection)
+
+        browser type in config. p file allows us to do cross-browser testing. We can do our test cases by changing the browser types. In interview: "With this framework I can do cross-browser testing, with the one location I can change the browser and then I can do all the test cases against firefox browser. Or any other browser type."
+
+  Utility Classes:
+        General utilities
+                Driver class (Singleton Design concept) - allows us to use same object in our all test cases, it makes our classes connect together with the same driver object
+
+                BrowserUtils Class
+
+                Conf.Reader- is needed to be able to read the config.properties file
+
+        Project related utilities
+                SmartBearUtils
+                OfficeUtils

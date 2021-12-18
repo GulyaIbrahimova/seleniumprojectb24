@@ -21,6 +21,8 @@ public class WebDriverFactory {
      Ex:
      WebDriver driver= WebDriverFactory.getDriver("chrome");
      and use driver as normal
+
+     12/5/21-> We don't need you anymore. It was nice working with you
      */
 
     //static, so we can call this method without creating object

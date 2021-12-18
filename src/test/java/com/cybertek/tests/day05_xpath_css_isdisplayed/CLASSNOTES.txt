@@ -1,0 +1,186 @@
+
+10/31/2021
+----------
+
+Sunday - Test Automation Day 5:
+-------------------------------
+
+add a new package:
+	day05_xpath_css_isdisplayed
+
+Add new class:
+	TC3_ForgotPassword
+===============================
+
+getText, getAttribute methods help read properties of the web element.
+
+Utility classes -> help with reusing the steps that are often repeated.
+So that we can reuse the code when needed and avoid code duplication.
+
+So far in java, you used:
+	Arrays class.
+	Arrays.sort(arrName);
+	Arrays.toString(arrName);
+	Arrays.equals(arr1, arr2); etc
+
+In Selenium, we can add a utils package into our project and store some utility classes there.
+
+Since we are repeating below lines in each class, we can write a utility class with a method to just reuse/call it when needed:
+
+WebDriverManager.chromedriver().setup();
+WebDriver driver = new ChromeDriver();
+driver.manage().window().maximize();
+
+Lets add a new package "utils" under com.cybertek
+Lets add a new class "WebDriverFactory"
+---------------------------
+
+8 LOCATORS IN SELENIUM:
+	- name
+	- id
+	- linkText
+	- partialLinkText
+	- className
+	- tagName
+	- xpath
+	- css
+
+xpath:
+	- is one of 8 locators of Selenium
+	- allows us to create custom locators based on html hierarchy or using any property+values
+	- it is popular in selenium test automation world
+	- it either starts with "/" or "//"
+
+2 types of xpath:
+	1) absolute xpath
+		- starts with single front slash "/"
+		- starts looking for parent/child/child/descendants until the desired element
+		- it starts from html tag then step by step until specific element
+		- when working with large pages, syntax gets too long and complex
+		- no so dependable since any change in html - will break the absolute xpath
+		- not recommended to use unless there are other options
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>WELCOME TO RESTAURANT</title>
+	</head>
+	<body>
+		<h1>Selenium</h1>
+	</body>
+</html>
+
+Lets say I want to locate h1 element using absolute xpath:
+
+"/html/body/h1"
+
+String txt = driver.findElement(By.xpath("/html/body/h1")).getText();
+---------------------------------
+
+google maps search box absolute xpath:
+	
+/html/body/div[3]/div[9]/div[3]/div[1]/div[1]/div[1]/div[2]/form/div/div[3]/div/input[1]
+
+add new class GoogleMapsXpathTest
+
+/html/body/div[3]/div[9]/div[3]/div[1]/div[1]/div[1]/div[2]/form/div/div[3]/div/input[1]
+
+/html/body/div/div[2]/div/div[1]/button[1]
+/html/body/div/div[2]/div/div[1]/button[1]
+
+
+2) RELATIVE XPATH:
+	- starts with "//"
+	- "//" will search anywhere in the page. no need to go from parent to child path
+	- it is more dependable and popular locator method in automation world
+
+	SYNTAX:
+	//tagname[@attribute_name='value']
+
+	<input autocomplete="off" class="tactile-searchbox-input" aria-autocomplete="list" aria-controls="sbsg51" dir="ltr" spellcheck="false" style="border: none; padding: 0px; margin: 0px; height: auto; width: 100%; outline: none;" aria-label="Choose starting point, or click on the map..." placeholder="Choose starting point, or click on the map...">
+
+	xpath for above element:
+	//input[@placeholder='Choose starting point, or click on the map...']
+
+---------
+
+New class WorldPopulationXpathTest
+
+Goto https://www.worldometers.info/world-population/
+wait 4 seconds
+Locate current world population number using relative xpath
+print getText value
+--------
+loop from 1 to 10
+	print the text of the element
+	wait 1 second
+==================================
+
+Add new class P6_MultipleButtonsXpathTest
+
+
+Exception in thread "main" org.openqa.selenium.InvalidSelectorException: invalid selector: Unable to locate an element with the xpath expression //p[@id='result] because of the following error:
+SyntaxError: Failed to execute 'evaluate' on 'Document': The string '//p[@id='result]' is not a valid XPath expression.
+
+
+Exception with selenium so far:
+
+1) NoSuchElementException -> unable to find the matching element for the locator
+2) InvalidSelectorException -> syntax issue with the locator itself
+
+<button class="btn btn-primary" onclick="button2()" name="button2">Button 2</button>
+WebElement button2 = driver.findElement(By.xpath("//button[text()='Button 2']"));
+
+Locating element using xpath and text 
+
+2 ways:
+	Syntax: //tagName[text()='text of element']
+			//tagName[.='text of element']
+
+	By.xpath("//button[text()='Button 2']")
+	By.xpath("//button[.='Button 2']")
+
+text() here is the function/method thats why it has parenthesis, 
+text in html is whatever characters between opening and closing tag.
+
+<button class="btn btn-primary">Button 2</button>
+------------------------------
+
+CHECK IF ELEMENT IS DISPLAYED ON THE PAGE:
+	- we can use isDisplayed() method on the webelement to check if element is displayed
+	- this method returns true or false
+	- this method works when element is on the html to check if it is displayed or hidden
+	- if element is not in HTML, then selenium will throw NoSuchElementException
+
+EX:
+ WebElement button2 = driver.findElement(By.xpath("//button[text()='Button 2']"));
+
+if (button2.isDisplayed()) {
+    System.out.println("PASS: Button2 is displayed");
+    button2.click();
+} else {
+    System.out.println("FAIL: Button2 is not displayed");
+}
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

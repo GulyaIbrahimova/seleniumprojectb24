@@ -1,0 +1,193 @@
+12/18/2021 | Saturday
+----------
+
+Automation Day 21
+-----------------
+
+Explicit wait intro
+
+--------------------
+
+maven lifecycle 
+
+mvn clean test -> we used this command to run all the tests.
+
+maven lifecycle 
+
+maven is a build tool. This the most popular build tool.
+
+Build -> when we create a project and write application code.
+In order to make it available for others to use this application, it needs to be deployed and running in server.
+EX: when we open google.com, it will go to google page. 
+It means google application was deployed to server and we as users can access it.
+
+So to reach the deployment level, the maven project needs to go through number of steps.
+Those steps are done using maven, and they are called Maven lifecycle.
+
+validate -> it validates the project that has no errors.
+compile -> compiles java classes. 
+test -> runs all the tests in test package
+package -> will run all the tests and also create a jar file for your project. And using that jar file, your maven project can be deployed and can also be shared in mvnrepository
+
+install -> it makes sure all dependencies are downloaded and added and also creates a jar file for your project.
+
+clean -> delete the target folder in the project
+
+At work, when you first get your project, i always run:
+
+mvn clean install -U
+
+-U -> forcefully check each dependency
+
+the above command will first delete the target folder.
+checks each dependency
+compiles each java class
+runs all tests
+creates a jar file for your project.
+jar file is like a Zip file. it contains all your classes and packages in same jar file.
+java archive file.
+
+Like a zip lock that has all your java classes and packages, basically your whole project.
+
+mvn clean install -U Is mainly used for app development projects.
+But we can also use same for automation maven projects.
+
+mvn clean install -U 
+    and click ENTER
+    if mvn is not recognized error appears.
+        MAC -> Command + ENTER
+        Windows -> Control + ENTER
+
+To stop the tests:
+    MAC: Command + Q
+    Windows: Control + Q
+============================
+
+How to run automated tests using maven:
+
+I use mvn clean test , to run the tests.
+
+mvn clean install -U  can be used to run almost all maven lifecycle steps.
+
+==============================
+
+How do you handle synchronization in Selenium automation?
+
+I use either implicit wait or explicit wait when it comes to syncronization.
+
+implicit wait: waits until element is present in the html. 
+We type the implicit wait method once and it applies to all steps where we locate/find the elements.
+
+driver.manage().timeOuts().implicitlyWait(10, TimeUnit.SECONDS);
+
+The above command affects the findElement(s) method.
+It will make sure that selenium waits for the element up to 10 seconds to appear in the html.
+If element appears in lets say 2 seconds, it will not keep waiting until 10.
+If element does not appear in 10 seconds, it will throw NoSuchElement exception.
+
+-------------------
+
+What if i want to wait for certain condition of particular webelement? like need to wait until button is enabled, link is clickable, or some icon until it disappears.
+
+For those cases and more, we use EXPLICIT WAIT.
+
+This wait has many useful conditional waiting commmands.
+
+Sir/Ma'am - What was your challenge in your project?
+
+My application uses make AJAX calls. And I kept getting different exceptions. So I used Explicit waits to handle the synchronization issue.
+
+AJAX -> Asynchronous Javascript and Xml
+
+Your page does not reload/refresh completely. 
+It only reloads partially. Only certain section of the page reloads.
+
+So selenium needs to wait until certain element is visible or enabled etc.
+
+==============================================
+
+Also sometimes elements are hidden, but they are in the html.
+So findelment method eill be ble to licate them, but we cannot do any other actions like click, sendkeys etc.
+So for those type scenarious we need EXPLICIT wait.
+
+---------------------------------------------
+how to use Explicit wait
+
+#1  WebDriver class obj and pass a driver and  timeout seconds to constructor
+
+#2 We need to use ExpectedConditions class method for WebElement or for whole page.
+
+    Ex.\WebDriver wait = new WebDriverWait(driver, 10);
+    wait.until(ExpectedConditions.visibleOfElement(someELem));
+
+
+==============================================
+
+Thread.sleep(1000) hardcoded wait time that comes with Java and should be avoided as much as possible. Id does not have any conditions, and might slow down execution.
+==============================================
+
+Interview question:
+
+What is DIFFERENCE between Implicit wait and Explicit wait?
+
+-> Implicit wait time is set once globally and applies to all steps.
+-> Explicit wait is applied to a specific element on the page
+
+-> Implicit wait works with findElement method and waits until element is present in html/dom(document object model).
+-> Explicit wait can be applied with dif. conditions that are avialable in ExpectedConditions class
+
+-> Implicit wait stops waiting as soon as is found in the html/dom
+-> Explicit wait stops waiting when condition is met. Like visibility f element, or enable of element
+
+-> implicit wait will throws NoSuchELementException. if element not appear in html/dom during timeout
+-> Explicit wait throws timout exception if conditions is not met within the specified seconds
+
+======================================
+How to use EXPLICIT WAIT:
+
+#1 WebDriverWait class object and pass a driver and time out seconds to constructor.
+
+#2 We need to use ExpectedConditions class method for webelement or for whole page.
+
+EX:
+	WebDriverWait wait = new WebDriverWait(driver, 10);
+	wait.until(ExpectedConditions.visiblityOfElement(someElem));
+====================================
+
+Thread.sleep(1000);  -> it is a hardcoded wait time, that comes with java. and should be avoided as much as possible. It does not have any conditions and might slow down execution.
+
+====================================
+
+What is the difference between Implicit wait and explicit wait?
+
+-> Implicit wait time is set once globally and applies to all steps.
+-> Explicit wait is applied to a specific element on the page
+
+-> Implicit wait works with findElement method and waits until element is present in html/dom (document object model)
+-> Explicit wait can be applied with different conditions that are available in ExpectedConditions class
+
+-> Implicit wait stops waiting as soon as element is found in the html/dom
+-> Explicit wait stops waiting when certain condition is met. like visibility of elem. or enable of elem etc
+
+-> Implicit wait throws NoSuchElementException if element does not appear in html/dom during the timeout
+-> Explicit wait throws TimeOutException if condition is not met within the specified seconds
+=====================================
+day20 -> comcast task
+day21 -> Thursday class with Oscar
+
+add new package day22_explicitwait_review
+
+add new class WaitUntilElemVisibleTest
+
+@Test
+public void waitForWebDriverElem() {
+
+}
+
+seleniumpractice.url=http://seleniumpractise.blogspot.com/2016/08/how-to-use-explicit-wait-in-selenium.html
+
+please goto TestBase class
+and comment Lines related to WebDriverWait
+
+====================================================
+

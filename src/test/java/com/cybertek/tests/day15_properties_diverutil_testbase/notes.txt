@@ -1,0 +1,259 @@
+
+
+Properties file in Java
+
+property -> is key+ value format data. Similar to Map format data structure(Map, HashMap)
+
+appName = vytrack
+adminUsername = admin
+
+Properties file is very popular file in java dev-t and automation projects. We store important properties/info regarding your app-n and configuration.
+
+Lets take an example of URLs that we have been using so far. All urls that we used are inside our code assigned to a variable.
+
+String urls =""
+The above approach is called HARD CODING the value.
+
+HARD CODING:
+  - IT IS KEEPING DATA/TEST DATA IN THE SOURCE CODE(whatever we write in java)
+  - what is wrong with that, so far it is working for us?
+        Hard coding value may cause more work when it come to reusing values and maintaining data.
+        if a value needs to Change we will need to dig through our code to update everywhere
+=====================================================
+    Q: How do we use properties file?
+
+       - In test automation we store our test data in separate file that is outside of our code
+
+       - Data can be urls, credentials, environment settings, browser settings(like changing browser- chrome to safari), timeouts,database urls, api urls
+
+       When u need to change U go 1 place and change it.
+       2 types of properties in Java:
+       1) Built in properties - are available in any computer and we read those using System.getProperty(prop.name") command
+
+       2) properties that programmers define in <configuration.properties> file
+
+
+** Built in properties - are available in any computer and we read those using System.getProperty(prop.name") command
+
+EX:
+System.out.println(
+
+Built in properties are built in system so they are available format.
+
+configuration.properties:
+browser=chrome
+env=qa
+qaUrl =http://qavytrack.com
+
+Then we need to read values from that file using System.getProperty("prop.name") command
+
+EX:
+System.out.println(System.getProperty("os.name")); MacOS
+System.out.println(System.getProperty("user.name")); CybertekB22
+
+When u have a lot of files in your project, this user.dir property will tell you where is your file  located.
+=======================================================
+//check environmental variables:
+https://docs.oracle.com/javase/tutorial/essential/environment/sysprop.html
+
+
+Key	Meaning
+
+"file.separator"	   -->      Character that separates components of a file path. This is "/"  on UNIX and "\" on Windows.
+
+"java.class.path"	   -->     Path used to find directories and JAR archives containing class  files. Elements of the class path are separated by a platform-specific character specified in the path.separator property.
+
+"java.home"	           -->     Installation directory for Java Runtime Environment (JRE)
+
+"java.vendor"	       -->       JRE vendor name
+
+"java.vendor.url"	   -->      JRE vendor URL
+
+"java.version"	       -->      JRE version number
+
+"line.separator"	   -->      Sequence used by operating system to separate lines in text files
+"os.arch"	           -->      Operating system architecture
+
+"os.name"	           -->      Operating system name
+
+"os.version"	       -->      Operating system version
+
+"path.separator"	   -->      Path separator character used in java.class.path
+
+"user.dir"	           -->      User working directory
+
+"user.home"	           -->      User home directory
+
+"user.name"	           -->       User account name
+
+
+System.getProperty("prop.name"); method is used to read built in System properties values
+=======================================================
+
+    Q: Where do you store your test data?
+         - I store my automation test data into different files. Like configuration.properties file
+ in key and value format
+ My urls, credentials, browser, execution settings, test input stored in configuration.properties file.
+ I do not hardcode values into my automation code. I keep dat outside the code so that I can easily maintain and use it.
+
+ -----------------------
+
+     Q: How do you read value from properties files?
+
+  - I use values from programming lang. and written a utility for that.
+  As we know properties file is like any other file and we need input stream to open it. So I open the file using FileInputStream object:
+
+  Then I load it to a Properties object.
+  Properties props = new Properties();
+  props.load(fis);
+
+  Then use getProperty ("key name")methods to read values from the file.
+
+  String url = properties.getProperty("url");
+  driver.get(url);
+
+---------------------------
+
+  java.io package -> java Input / Output package.
+  java.nio        -> java New Input / Output package.
+
+  FileInputStream class is used to read files using java
+
+  Scanner class can also be used to read files.
+
+  Input  -> reading files
+  Output -> writing to files
+----------------------------
+
+Since we will be using properties file to store and read values in our automation framework.
+We need some utility class to read values more effectively and easily.
+
+ConfigurationReader- we store in Utils package
+
+================================================
+static variable -> variable belongs to class, it is shared with only one copy. This variable is accessible by static methods
+
+static method -> can be called using the classname.methodname or using object. It can access only other static variables and methods.
+
+static block -> it is a block code that runs ONCE when class is loaded/used. We can add code that needs to run once ONLY.
+
+static inner/nested class -> class that is inside another class. do not worry about this one.
+
+Why are we using static block in our ConfigurationReader class.
+
+Because we want to open the properties file and load to Properties object ONLY ONCE before we read values.
+
+===================================================
+Code reability:
+https://www.sonarqube.org/
+
+
+====================================================
+How to read system properties
+How to add configuration.properties file and add data to it using java Properties and FileInputStream classes.
+
+Added a utility class ConfigurationReader.
+This class helps us read values from configuration.properties file.
+
+In configuration.properties file, we store test data that is needed for our automation test that is needed for our automation tests, like Urls, credentials, browser type etc.
+
+----------------------------------------
+
+utils:
+Configuration.java -> read values from configuration.properties file
+    : WebDriverFactory.java -> launching browser and returning
+    : BrowserUtils.java -> has sleep method that helps us pause the code
+    : SmartBearUtils.java -> has application specific reusable methods for SmartBear application
+    : Driver.java -> similar to WebDriverFactory
+
+
+    Singleton pattern -> approach is very common. insures that there is only one object of this class can be created and all classes share or use that same object.
+    We cannot create multiple object of that class that uses Singleton pattern.
+    Singleton pattern -> single object/instance throughout the project (maven project).
+
+============================================
+There are dif patterns in Java programming in general and some are specific to automation as well.
+
+- singleton
+- builder
+- page object model pattern
+
+           Singleton pattern:
+
+public class Car{
+    private Car(){}  // private constructor
+    private Car(String model, String color){variables}
+
+    private static Car tesla;
+
+    public static Car getCar(){
+
+        if(car == null){
+            car = new Car("Model 3", "blue");
+
+        }
+        return tesla
+    }
+
+}
+
+-> private constructor -> prevents object creation.
+
+Car car = new Car(); it will not compile in other classes, because constructor is private.
+
+-> static variable for the object -> static will ensure there is only one copy of the obj/variable
+
+-> static getter method ->
+this method will first check if static var is null, if it is null, it will assign an obj. and return it.
+If it is not null, it means that this method was called before and it will return the same obj. each time.
+
+Car.getCar(); ....
+
+
+Car car1 = new Car();/does not compile
+
+Car car1 = Car.getCar(); since it is first call, car object is created and returned
+
+Car car2 = Car.getCar(): returns the same car object that car1 has.
+both car1 and car2 are "Model 3" and "blue"
+
+So our method keeps returned same Single car obj every time the method is called
+
+
+Webdriver driver = driver.getDriver();
+driver.get(url);
+
+add new class Driver
+
+SINGLETON CLASS -> a class from which we can create only one obj. It ensures the SINGLE obj. is used v=by all other class.
+    -> private constructor. so new keyword will not work
+
+    -> static getter method
+
+    In automation, we have driver class that helps us to have only ONE SINGLETON webdriver object. And all classes in our automation framework use the same WebDriver/Browser
+
+=====================================
+
+in util package lets add Driver class
+
+===================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

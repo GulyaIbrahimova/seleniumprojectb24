@@ -1,0 +1,180 @@
+0/21/2021 - Thursday
+----------
+Automation day 2.
+-----------------
+Last class:
+- Benefits of test automation
+- Different tools in the market
+- Selenium suite - Selenium webdriver
+- Set up a maven project for the automation
+- added dependencies
+- Launch browser, navigations, gettitle
+
+
+ `   What is Selenium?
+
+Selenium is a tool that helps us automate browsers.
+It is a set of jar files. We use selenium jar files in our project to be able to automate UI/Front end tests
+jar -> java archive file. zip/rar
+basically jar consists of many java classes that are organized in packages/project.
+
+                                        Interview question:
+
+I use Selenium webdriver with java and other tools to automate the UI tests of our application. 
+My efforts of creating automation framework and automating the tests, helped reduce time and increase accuracy of our QA tests.
+
+
+    What is maven?
+- Maven is a build automation tool used primarily for Java projects.
+
+    Is maven used only for Automation?
+- Maven is used for development and automation.
+  Actually developers use more features of maven compared to automation.
+
+    How does maven help with automation?
+- I use maven project for my automation framework, it helps with dependency management using pom.xml, 
+  it comes with existing folder structure. It also helps me execute my tests from command line.
+
+      pom.xml 
+    -> this is the most important file in maven project
+    -> we add and manage project dependecies in pom.xml
+    -> we can use many maven plugins in pom.xml
+    -> we can manage versions of the dependencies in pom.xml
+
+      .m2 folder
+
+    -> this is the folder where all the jar files for project dependencies are stored. 
+    Maven downloads jar files into .m2 folder then associates/links them to our project
+        MAC: /Users/cybertekb24/.m2
+        Finder > Go > Goto Folder > 
+        Windows: C:\Users\cybertekb24\.m2\
+
+      What version of java/selenium are you using?
+
+          Java -> java 8
+          Selenium -> 3.141.59
+
+       Maven folder structure:
+
+    src -> main -> java  -> developers write application code
+
+    src -> test -> java  -> developers write unit tests for their application source code
+
+Normally test automation is in a seperate maven project or a seperate sub module project. 
+
+- Murodil: I like sepatae sub project, because you can use automation code, developers code, you can use in your code.
+It makes a lot of things easier. But most of the time, your test automation project is a seperate maven project.
+
+------------------------------------------
+
+Selenium webdriver:
+    browser level operations:
+       How to Set up browser driver :   
+      -> WebDriverManager.chrome().setup();
+      -> Launch the browser/Open the browser
+
+    WebDriver driver = new ChromeDriver();
+      - we created object the ChromeDriver class.
+
+    -> Navigate to a certain page:
+        driver.get("URL"); -get waits until the page is loaded
+        driver.navigate().to("URL"); -navigate().to does not wait until page is loaded and continues to next step
+          
+    -> navigate().back();
+       navigate().forward();
+       navigate().refresh();
+
+    -> read the title value of the page:
+       driver.getTitle() returns the title value of the current page.
+
+    -> read the url value of the page:
+       driver.getCurrentUrl() returns the current url of the page.
+
+
+       --------------Example----------------------------
+
+       package com.cybertek.tests.day02_browser_level_operations;
+
+        import io.github.bonigarcia.wdm.WebDriverManager;
+        import org.openqa.selenium.WebDriver;
+        import org.openqa.selenium.chrome.ChromeDriver;
+
+      public class GEtTitleAndUrlAndSource {
+          public static void main(String[] args) {
+
+        WebDriverManager.chromedriver().setup();//setup browser, before Boni garcia
+        String url ="https://www.etsy.com";
+        WebDriver driver = new ChromeDriver();// created driver object
+        //this code opens the browser, but it is still empty
+
+        driver.get(url);// we don't have to type url, cause already created variable
+
+        //read the title of the page and print out
+        System.out.println("Title: " + driver.getTitle());
+
+        //this time do it with storing the title into String variable
+        String etsyTitle = driver.getTitle();
+        System.out.println("etsyTitle " + etsyTitle);
+
+        //read the url of the current page
+        System.out.println("Current url: " + driver.getCurrentUrl());
+        //store the url into a String variable
+        String currentUrl = driver.getCurrentUrl();
+        System.out.println("Current Url " + driver.getCurrentUrl());// method is behavior of the Class
+
+        //read page source and print it
+        System.out.println("HTML page source " + driver.getPageSource());
+
+        //store the source code into a variable then print the char count
+       String html = driver.getPageSource();
+        System.out.println("Count of character in html " +html.length());
+
+        //close the browser driver.close();, driver.quit();
+        driver.quit();
+
+}
+
+
+
+new package:
+day02_browser_level_operations
+
+      Gultakin Ibrahimova — Today at 8:18 PM
+      Question:what is the difference between   WebDriverManager and WebDriver?
+      Why we created object from 2nd one, not from 1st one?
+      WebDriver driver = new ChromeDriver();
+
+    WebDriverManager - is a class that is helping us to set up the driver for the browser.
+    WebDriver        - is Selenium webdriver that is our automation tool.
+
+
+-----
+
+      The below line is used to set up chromedriver using -  System.setProperty(""):
+      System.setProperty("webdriver.chrome.driver", "C:Selenium-java-chromedriver_win32chromedriver.exe");
+      So we had to download chrome or firefox driver then point to it using System.setProperty.
+      But now, we just use below line and it will automatically download and set up the driver for the browser for us:
+      WebDriverManager.chromedriver().setup();
+      WebDriverManager is from Boni Garcia project. 
+-------------------------
+      - getPageSource() method is used to read the html source code of the current page.
+      System.out.println(driver.getPageSource());
+-------------------------
+      When you test the application functionality?
+      We are making sure that actual behaviour matches the expected behaviour.
+      Actual behavior is what you see on the page.
+      expected behaviour is what is written in requirement documentation.
+      If we do that manually , it is manual testing/functional testing.
+      If we automate it, it is automated testing, but at the end of the day - its all testing, comparing actual with expected.
+      Yahoo | Mail, Weather, Search, Politics, News, Finance, Sports & Videos
+
+
+      Q: Do we noramlly have access to devops code? 
+      A: It depends on the project. Most of the time you do. In most Agile products we have access to the code, 
+      cause it is in gitHub. You can pul to your local, and run the application locally as well.
+      It depends on the company.
+
+
+
+
+      *************************************************
