@@ -37,7 +37,7 @@ My efforts of creating automation framework and automating the tests, helped red
 
       pom.xml 
     -> this is the most important file in maven project
-    -> we add and manage project dependecies in pom.xml
+    -> we add and manage project dependencies in pom.xml
     -> we can use many maven plugins in pom.xml
     -> we can manage versions of the dependencies in pom.xml
 
@@ -60,10 +60,10 @@ My efforts of creating automation framework and automating the tests, helped red
 
     src -> test -> java  -> developers write unit tests for their application source code
 
-Normally test automation is in a seperate maven project or a seperate sub module project. 
+Normally test automation is in a separate maven project or a separate sub module project.
 
-- Murodil: I like sepatae sub project, because you can use automation code, developers code, you can use in your code.
-It makes a lot of things easier. But most of the time, your test automation project is a seperate maven project.
+- Murodil: I like separate sub project, because you can use automation code, developers code, you can use in your code.
+It makes a lot of things easier. But most of the time, your test automation project is a separate maven project.
 
 ------------------------------------------
 

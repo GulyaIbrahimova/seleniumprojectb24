@@ -40,7 +40,7 @@ Ad-hoc testing, where you just perform random actions on the application , needs
 Capchas that ask to select images cannot be automated. ets
 --------
 Before any functionality of the application is automated, we need to first manually test and ensure it is working as expected, 
-only after that we automate that test. if functionality is broked or has defect, we do NOT automate defects/functionality with defect
+only after that we automate that test. if functionality is broken or has defect, we do NOT automate defects/functionality with defect
 ============
 There are many test automation tools in the market. Some are free and some are licensed. Free ones are Selenium, Protractor, WAtir, etc
 Paid ones: UFT from HP, Robot from IBM, TestComplete from Smartbear etc
@@ -63,7 +63,7 @@ Selenium IDE -> it is firefox plugin, that works as record and playback format.
 Not used anymore, do not mention anywhere, especially in your resume or in interview.
 Selenium RC (Remote control) , it is merged to Webdriver now.
 ***Selenium WebDriver -> this is what we will be using and learning, and needed at work. 
-Selenium Grid -> is used to run tests remotely in servers and in paralell format.
+Selenium Grid -> is used to run tests remotely in servers and in parallel format.
 If application under test (AUT) is developed using C# , can we still use java for test automation?
 Yes, we can, automation language and application development languages does nto have to match.
 ================
@@ -94,7 +94,7 @@ For browser drivers:
 </dependency>
 ======================================
 Maven is build automation tool.
-It hepls us with multiple things:
+It helps us with multiple things:
 1) Manage project dependencies.
 2) Building the project
 3) Execution of automation tests

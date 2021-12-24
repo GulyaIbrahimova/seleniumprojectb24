@@ -1,0 +1,65 @@
+
+TDD -> Test DRiven Development (Because you write tests 1st- we don't do TDD)
+Purpose is to achieve bug free development
+If any team implementing TDD, they write tests 1st, make sure all tests fail. Then they  write app-n code just to pass those tests.(These are small tests, small Unit tests)
+This approach is used by Software developers. Not automation engineers. Tests are Unit tests written using either JUnit ot TEstNG. Test are normally very small and point to smallest functionality.
+
+==================================================
+
+In TDD, tests are written using programming lang. So only technical people understand those. BA, SM, PO mostly can't understand. It might create GAP between Technical and non-Technical team members. Therefore BDD was introduced.
+In BDD approaches are behavior focused, that is why it is called BEHAVIOR DRIVEN DEVELOPMENT.
+
+How does it work?
+-> the purpose is to bridge the gap between Technical and non-Technical team members.
+Application requirements/stories become Scenarios written using human language. Is also called GHERKIN language.
+
+App-n story/requirements ==> is replaced by BDD scenario
+BDD scenario is written English language that everyone understands.
+
+EX:
+Given user is logged in to Facebook
+When user posts a photo
+Then photo should be visible to all friends
+
+Once the BDD scenario is written by the team.
+DEVs(developers) go and write code according to the scenario.
+
+SDETs/Automation testers go and write automation code according to scenario.
+So everyone is on the same page.
+
+Three Amigos.
+BA + DEV + QA seat together and write BDD scenario and post into JIRA.
+
+We can divide BDD into 2 layers:
+1. Business layer -> BDD scenario written using GHERKIN lang
+
+    -> Defines how app-n works
+    -> for Business people, BA, PO, etc
+2. Implementation -> is done by technial people in your team, Devs, QA Automation, DevOPs etc.
+
+==================================================
+
+Tools and languages(Technologies) we learned so far:
+
+Java+ Selenium WEbDriver + Maven + TestNG + Git +
+
+
+from today:
+    Cucumber + JUnit to the list
+
+    Cucumber is  a tool that is used for automation with BDD approach. that is why called Cucumber BDD
+
+Cucumber BDD -> We write feature files, inside the future files we write BDD scenarios in ENgish in GHERKIN syntax.
+
+Given user is logged in to Facebook
+When user posts a photo
+Then photo should be visible to all friends
+
+The above ex. is written in GHERKIN lag/syntax. We need to take each step and write automation code for it. Or Write Implementation for those steps
+==================================================
+
+//take note from Murodil
+
+.....................................
+
+

@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class AddingBook extends TestBase {
+
     @Test
     public void addBook() throws InterruptedException {
         driver.get(ConfigurationReader.getProperty("library2.url"));
@@ -38,7 +39,7 @@ public class AddingBook extends TestBase {
         year.sendKeys(faker.date().birthday().toString().substring(24));
 
         WebElement author = driver.findElement(By.xpath("//input[@placeholder='Author']"));
-        author.sendKeys("fuatty");
+        author.sendKeys("group One Test");
 
         WebElement description = driver.findElement(By.xpath("//textarea[@id='description']"));
         description.sendKeys(faker.lorem().paragraph());

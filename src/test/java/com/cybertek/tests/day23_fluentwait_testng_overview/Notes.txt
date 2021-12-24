@@ -1,0 +1,222 @@
+12/19/21
+
+Review:
+    hoe to handle synchronization in Selenium?
+     -> implicit wait:
+        driver.manage().timeouts().implicitWait(10,TimeUnit.SECONDS);
+     -> explicit wait:
+      WebDriverWAit, ExpectedConditions
+      WebDriverWait wait = new WebDriverWait(driver, 60);
+      wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Change Server")));
+      wait
+
+     -> FluentWait: is also part of explicit wait. We can manually specify the condition,
+ how often to check, timeout, what exception to ignore( we don't use it too much)
+
+ Can we mix implicit and explicit waits? Or do we need to use only one type of wait at our code?
+ -> we  can. It is not recommended.
+
+   https://www.selenium.dev/selenium/docs/api/java/org/openqa/selenium/support/ui/FluentWait.html
+ An implementation of the Wait interface that may have its timeout and polling interval configured on the fly.
+ Each FluentWait instance defines the maximum amount of time to wait for a condition, as well as the frequency with which to check the condition. Furthermore, the user may configure the wait to ignore specific types of exceptions whilst waiting, such as NoSuchElementExceptions when searching for an element on the page.
+
+ Sample usage:
+
+    // Waiting 30 seconds for an element to be present on the page, checking
+    // for its presence once every 5 seconds.
+    Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+        .withTimeout(30, SECONDS)
+        .pollingEvery(5, SECONDS)
+        .ignoring(NoSuchElementException.class);
+
+        When using fluentWait we can manually specify:
+         - timout frequency of checking for the condition, ignoring specific exception
+
+   Waits in Selenium:
+   -> implicit wait
+   -> explicit wait:
+            -> WebdriverWait
+            -> FluentWait
+            I can manually set the timeout, manually ignore specific exception. Then we specify condition using wait.until method and implement apply method.
+
+            Good thing about FluentWait:
+            #1 you can still use ExpectedConditions
+            #2 you can write custom conditions based on your application situation. In case ExpectedCondition does not provide the condition that you need to use.
+
+===============================================================
+
+What is the difference between Implicit wait and explicit wait?
+
+-> Implicit wait time is set once globally and applies to all steps.
+-> Explicit wait is applied to a specific element on the page
+
+-> Implicit wait works with findElement method and waits until element is present in html/dom (document object model)
+-> Explicit wait can be applied with different conditions that are available in ExpectedConditions class
+
+-> Implicit wait stops waiting as soon as element is found in the html/dom
+-> Explicit wait stops waiting when certain condition is met. like visibility of elem. or enable of elem etc
+
+-> Implicit wait throws NoSuchElementException if element does not appear in html/dom during the timeout
+-> Explicit wait throws TimeOutException if condition is not met within the specified seconds
+
+-> Explicit wait can be implemented using WebDriverWait or FluentWait
+===============================================================
+
+WebDriverWait or FluentWait
+
+- WebDriverWait extends FluentWait class
+- Both are used for EXPLICIT wait in selenium
+- we can specify conditions for the particular element
+- WebDriverWait -> we specify timeout, and condition using ExpectedConditions
+- FluentWait - we specify timeout, polling frequency(how often to check), ignoring a specific exception
+- FluentWait -
+
+
+**************************************************************
+- The Implicit Wait in Selenium is used to tell the web driver to wait for a certain amount of time before it throws a “No Such Element Exception”. waits until element is present in the html.
+
+ - The Explicit Wait in Selenium is used to tell the Web Driver to wait for certain conditions (Expected Conditions) or maximum time exceeded before throwing “ElementNotVisibleException” exception.
+
+**************************************************************
+
+Practice:
+
+edmunds.url=https://www.edmunds.com
+
+public class EdmundsNewCarSearchTest {
+
+	@Test
+	public void searchForNewCarTest() {
+		driver.get(ConfigurationReader.getProperty("edmunds.url"));
+
+	}
+}
+------
+
+When writing page objects for our application, we can implement INHERITANCE, ABSTRACTION
+
+all page classes will goto pages package.
+
+We add a parent abstract class BasePage
+
+add common variables, methods, constructor to it.
+
+EdmundsHomePage extends BasePage
+EdmundsNewCarPage extends BasePage
+EdmundsCarDetailsPage extends BasePage
+
+
+====================================================
+
+TestBase -> inherited by test classes
+        GoogleSearchTest -> Test
+        EtsyLoginTest -> @Test
+
+BasePage -> inherited by Page Object classes
+        GoogleHomePage -> @FindBy etc
+        EdmundsHomePage -> -> @FindBy etc
+
+====================================================
+
+TestBase:
+	@BeforeMethod
+	public void setUp() {
+		opening webdriver, maximize, impl wait. -> Driver.getDriver()
+	}
+	@AfterMethod
+	public void tearDown() {
+		//close driver/browser
+	}
+
+public class EdmundsTest extends TestBase
+{
+	@Test
+	public void searchForNewCarPriceTest() {
+		///navigate homepage
+		//create page class objects
+	}
+}
+
+=======================
+
+POM design pattern -> creating a java class for each page of the application.
+
+BasePage:
+	- WebElements that common for each page
+	- Constructor with PageFactory.initElements
+	- method that can be used by all pages.
+	- anything that is common for all pages
+
+EdmundsHomePage extends BasePage:
+	@FindBy WebElements
+	methods
+	--constructor
+
+We added constructor in BasePage parent class. and it has PageFactory.initElements.
+So when we write our EdmundsHomePage , we do not have to add the constructor and PageFactory any more.
+Why. because When we create object of child class ->EdmundsHomePage, it first runs the constructor of parent class - BasePage
+
+public abstract class BasePage {
+
+	public BasePage() {
+		System.out.println("In BasePage constructor...")
+        driver = Driver.getDriver();
+
+        System.out.println("Initializing all elements...")
+        PageFactory.initElements(driver, this);
+    }
+}
+
+public class EdmundsHomePage extends BasePage {
+
+	@FindBy(id = "user")
+	public WebElement userName;
+
+	public EdmundsHomePage() {
+		super();//calling BasePage constructor
+		System.out.println("hello helloo!");
+	}
+
+}
+
+BasePage page = new BasePage(); This will not work, we decided to make BasePage abstract so that nobody can instantiate it.
+
+EdmundsHomePage page = new EdmundsHomePage();
+
+Prints:
+In BasePage constructor...
+Initializing all elements...
+hello helloo!
+
+When we create object of child class ->EdmundsHomePage, it first runs the constructor of parent class - BasePage
+
+Benefit is : we are reusing PageFactory.initElements(driver, this); and do not have to add into child class Page classes.
+==============================================
+
+
+TestNG framework structure:
+	src.test.java
+		com.cybertek
+			pages :
+				BasePage
+				OtherPages for application extends BasePage
+			tests:
+				TestBase:
+				otherTest classes extends TestBase
+			utils:
+				Driver
+				BrowserUtils
+				ConfigurationReader
+
+	configuration.properties
+	pom.xml
+
+
+//Todo Homework:  https://github.com/Dotdashcom/take-home-webdriver-test
+
+
+
+
+
+
+
