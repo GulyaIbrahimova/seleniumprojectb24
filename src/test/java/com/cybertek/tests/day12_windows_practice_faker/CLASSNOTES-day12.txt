@@ -271,3 +271,10 @@ In some projects, you will be given the test data to use with your test cases.Mo
  In some flows of application, you might need random mock test data to use as inputs. We can use library like java faker for that. or there are more advanced test data generator libraries as well. like https://www.mockaroo.com etc.
 ========================================
 
+
+
+
+
+
+
+

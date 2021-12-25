@@ -109,7 +109,7 @@ How to write TestNG tests:
 
 TestNG annotations
 
-@Test -> is used to make a method an executatable TestNG test.
+@Test -> is used to make a method an executable TestNG test.
 
 If we have multiple @Test methods, it will run alphabetically by default.
 

@@ -22,7 +22,7 @@ public class FileDownloadTest extends TestBase {
 @Test
     public void fileDownloadTest() throws IOException {
 
-    //Navigate to diwnload page . reading url from properties file
+    //Navigate to download page . reading url from properties file
    // Driver.getDriver().get(ConfigurationReader.getProperty("download.url"));
     driver.get(ConfigurationReader.getProperty("download.url"));
     WebElement someFileDownload = driver.findElement(By.linkText("some-file.txt"));

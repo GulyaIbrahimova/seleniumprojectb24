@@ -52,9 +52,9 @@ IQ: Difference between CSS and Xpath?
 
 - both are one of 8 locators in Selenium webdriver and help us write custom locators. Especially useful when there is no id or name etc.
 
-- we can use tagname and any html attribute
+- we can use tagName and any html attribute
 
-- 1) Xpath can locate elements using the TEXT value
+1) Xpath can locate elements using the TEXT value
      CSS cannot use text value
 2) Xpath can use indexes when there are multiple matches
    CSS does not support indexing numbers
@@ -64,7 +64,7 @@ IQ: Difference between CSS and Xpath?
 4) Xpath is considered to be slower
    CSS is slightly faster.
    But we do not feel the difference unless we work with many elements
-   ======================================================================
+======================================================================
 
 NAVIGATING FROM PARENT TO CHILD IN XPATH AND CSS:
 

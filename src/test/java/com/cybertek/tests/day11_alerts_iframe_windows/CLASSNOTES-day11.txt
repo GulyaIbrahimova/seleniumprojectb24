@@ -14,7 +14,7 @@ Handing Alerts/Pop-up windows in Selenium:
 
 
 Html alert -> is written using html tags and html language, so there is nothing special needed to work with them in Selenium:
-	-> you locate the pop up window using any locator then you can perform actions like click, sendkeys etc.
+	-> you locate the pop up window using any locator then you can perform actions like click, sendKeys etc.
 	-> other elements are not normally blocked. Maybe partially it will block the page elements
 
 Lets say in your application, there pop up window to ask to sign up with email shows at certain step:
@@ -61,7 +61,7 @@ Switch to it first:
 	Alert alert = driver.switchTo().alert();
 	System.out.println(alert.getText());
 	alert.sendKeys("hello");
-	alert.comfirm();
+	alert.confirm();
 
 ===============================
 
@@ -71,13 +71,14 @@ WORKING WITH FRAMES IN SELENIUM:
 IFrame -> Inline Frame: Is HTML inside HTML.
 
 Normally used to build re-usable page components and re-use it in different pages.
-If we change iframe code, it will affect every page that it was used for, so it is good for maintainability and reusablity.
+If we change iframe code, it will affect every page that it was used for, so it is good for maintainability and re-usability.
 
 Examples: maps, calculator, weather widget etc
 
 ------------------
 
-When doing automation using Selenium webdriver, if we want to locate an element which is inside the iframe, then we need to switch to it first, then we can locate the element.
+When doing automation using Selenium webdriver, if we want to locate an element which is inside the iframe, then we need to switch to it first,
+then we can locate the element.
 
 <html>
 	<head> </head>

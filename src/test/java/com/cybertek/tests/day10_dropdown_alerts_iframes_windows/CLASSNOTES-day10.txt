@@ -264,7 +264,7 @@ add new class HandlingAlertsTest
 
 
 Alert interface is used to accept, dismiss java script alerts
-We need to swithTo().alert() first and assign to Alert interface type variable.
+We need to switchTo().alert() first and assign to Alert interface type variable.
 
 Syntax:
 
