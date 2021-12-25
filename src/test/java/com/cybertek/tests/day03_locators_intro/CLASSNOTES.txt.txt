@@ -1,4 +1,4 @@
-
+\
 10/24/2021
 ----------
 
@@ -45,7 +45,7 @@ findElement(By.locator("value"))
 driver.findElement(By.linkText("Gmail")).click();
 ----------------------------
 
-To Tell Selenium to do any action on the webelement:
+To Tell Selenium to do any action on the webElement:
 
 1) First we need to find the element using the locator
 2) apply the action
@@ -177,13 +177,13 @@ driver.findElement(By.linkText("Logout")).click();
 
 #tagName -> By.tagName("h3")
 	-> one of 8 locators, that we can use with selenium,
-	-> we just provide the tagname of html element
+	-> we just provide the tagName of html element
 
 driver.findElement(By.tagName("h3")) 
 
 System.out.println("header text = " + driver.findElement(By.tagName("h3")).getText());
 
-getText() method of Selenium WebDriver. It returns the text value of webelement.
+getText() method of Selenium WebDriver. It returns the text value of webElement.
 
 text is whatever characters between opening and closing html tags
 <h3>Log in to ZeroBank</h3>
